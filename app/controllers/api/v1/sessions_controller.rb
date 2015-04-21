@@ -1,4 +1,4 @@
-class Api::V1::SessionsController < RocketPants::Base#< ApplicationController
+class Api::V1::SessionsController < Api::V1::BaseController#< ApplicationController
 
 #prepend_before_filter :require_no_authentication, :only => [:create ]
 
@@ -7,6 +7,7 @@ class Api::V1::SessionsController < RocketPants::Base#< ApplicationController
  # before_filter :ensure_params_exist
  
   #respond_to :json
+ skip_before_action :require_authentication!
   
   def create
     usuario = Usuario.find_by(email: params[:email])
@@ -14,10 +15,11 @@ class Api::V1::SessionsController < RocketPants::Base#< ApplicationController
     if usuario && usuario.valid_password?(params[:password])
       usuario.generate_authentication_token
  
-      expose({
-        usuario_id: usuario.id,
-        authentication_token: usuario.authentication_token
-      })
+     # expose({
+     #   usuario_id: usuario.id,
+       # authentication_token: usuario.authentication_token
+     # })
+expose (usuario)
     else
       error! :unauthenticated
       #render :json=>{:success=>false, :message=>"missing user_login parameter"}, :status=>422
@@ -30,8 +32,13 @@ class Api::V1::SessionsController < RocketPants::Base#< ApplicationController
 
   end
   
+  def cerrar_sesion()
+
+  end
+
+
   def destroy
-    sign_out(resource_name)
+    #sign_out(resource_name)
   end
  
  

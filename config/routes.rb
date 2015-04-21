@@ -4,7 +4,11 @@ devise_for :usuarios
 
   namespace :api do
   namespace :v1 do
-     resources :sessions, only: [:create,:destroy]
+     resources :sessions, only: [:create]
+     resources :retos, only: [:index]
+     resources :usuarios, only: [:update]
+     #resources :retos, only: [:index]
+     post 'api/v1/sessions/cerrar' => 'sessions#cerrar_sesion'
     end
   end
 
