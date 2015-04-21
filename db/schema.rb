@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418010209) do
+ActiveRecord::Schema.define(version: 20150420024137) do
 
   create_table "logros", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150418010209) do
     t.integer  "total_matados",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "authentication_token"
   end
 
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
