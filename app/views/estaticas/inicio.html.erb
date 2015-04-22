@@ -1,4 +1,15 @@
-<div class="col-md-4">
-<h1>Hola</h1>
 
+<div class="container">
+	<h1>Usuarios Conectados</h1>
+<% @usuarios.each do |us| %>
+
+<% if us.authentication_token != nil %>
+  <div class="col-md-4 well centrar">
+  	<h3>Nombre : <%= us.nickname %></h3>
+  	<h3>Email: <%= us.email %></h3>
+  	<h3>Nivel: <%= us.nivel %></h3>
+  </div>
+<%end%>
+
+<%end%>
 </div>
