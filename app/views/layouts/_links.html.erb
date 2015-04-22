@@ -4,6 +4,8 @@
                         <%if usuario_signed_in?%>
                         <li><%=link_to 'Editar',edit_usuario_registration_path%>
                         </li>
+                        <li><%=link_to 'Mi Perfil',"/usuarios/"+current_usuario.id.to_s %>
+                        </li>
                         <li><%=link_to 'Cerrar Sesion',destroy_usuario_session_path(current_usuario),confirm: 'Esta Seguro?', method: :delete%>
                         </li>
 
