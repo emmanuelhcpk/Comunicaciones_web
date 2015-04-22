@@ -1,0 +1,18 @@
+ <li class="active"><%= link_to 'Inicio',inicio_path%>
+
+                        </li>
+                        <%if usuario_signed_in?%>
+                        <li><%=link_to 'Editar',edit_usuario_registration_path%>
+                        </li>
+                        <li><%=link_to 'Cerrar Sesion',destroy_usuario_session_path(current_usuario),confirm: 'Esta Seguro?', method: :delete%>
+                        </li>
+
+                        <%else%>
+                        <li><%=link_to 'Iniciar Sesion',new_usuario_session_path %>
+                        </li>
+                        <li><%=link_to 'Registrarme',new_usuario_registration_path %>
+                        </li>
+                        <%end%>
+                        
+
+                        

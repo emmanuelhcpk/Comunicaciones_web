@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-devise_for :usuarios
+devise_for :usuarios, :controllers => { registrations: 'usuarios/registrations' }
+
 
   namespace :api do
   namespace :v1 do
@@ -11,8 +12,10 @@ devise_for :usuarios
      post 'api/v1/sessions/cerrar' => 'sessions#cerrar_sesion'
     end
   end
+  resources :retos
+resources :usuarios
 
-
+get 'inicio' => 'estaticas#inicio'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

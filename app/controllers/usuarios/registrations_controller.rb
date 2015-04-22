@@ -1,6 +1,6 @@
 class Usuarios::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+ before_action :configure_sign_up_params, only: [:create]
+ #before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -39,9 +39,9 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # You can put the params you want to permit in the empty array.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+   def configure_sign_up_params
+     devise_parameter_sanitizer.for(:sign_up) << :nickname
+   end
 
   # You can put the params you want to permit in the empty array.
   # def configure_account_update_params
@@ -57,4 +57,14 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+   
+private
+  def sign_up_params
+    params.require(:usuario).permit(:nickname, :email, :password, :password_confirmation)
+  end
+
+  def account_update_params
+    params.require(:usuario).permit(:nickname, :email, :password, :password_confirmation, :current_password)
+  end
+  
 end
